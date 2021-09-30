@@ -87,7 +87,9 @@ git remote set-url origin https://x-access-token:$COMMITTER_TOKEN@github.com/$GI
 git config --global user.email "$USER_EMAIL"
 git config --global user.name "$USER_NAME"
 
-git remote add fork https://x-access-token:$COMMITTER_TOKEN@github.com/$HEAD_REPO.git
+if [[ "$(git remote)" != *fork* ]]; then
+  git remote add fork https://x-access-token:$COMMITTER_TOKEN@github.com/$HEAD_REPO.git
+fi
 
 set -o xtrace
 
